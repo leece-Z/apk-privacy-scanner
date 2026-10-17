@@ -18,5 +18,10 @@ data class ApkScanResult(
         items = emptyList()
     ),
     /** v1.2.1: 目标应用权限状态（声明+授权） */
-    val appPermissions: List<AppPermissionDetail> = emptyList()
+    val appPermissions: List<AppPermissionDetail> = emptyList(),
+    /**
+     * 本次扫描的覆盖度总览（P1 证据模型）。
+     * 默认 COMPLETE，与升级前行为一致；接入加固壳检测后可降级并列出未知项。
+     */
+    val coverage: ScanCoverage = ScanCoverage()
 )
