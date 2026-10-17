@@ -1,0 +1,37 @@
+# ===== Gradle =====
+.gradle/
+build/
+app/build/
+
+# ===== Android IDE =====
+local.properties
+.idea/
+*.iml
+
+# ===== APK / Build artifacts =====
+*.apk
+*.aab
+*.ap_
+*.dex
+*.jks
+*.keystore
+
+# ===== OS files =====
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+
+# ===== Logs / Debug =====
+*.log
+*.hprof
+captures/
+
+# ===== Build troubleshooting dumps =====
+build_errors*.txt
+build_log*.txt
+build_output*.txt
+
+# ===== Native build =====
+.externalNativeBuild/
+.cxx/

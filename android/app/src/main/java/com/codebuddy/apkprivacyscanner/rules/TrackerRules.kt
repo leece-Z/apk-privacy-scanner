@@ -1,0 +1,93 @@
+package com.codebuddy.apkprivacyscanner.rules
+
+import com.codebuddy.apkprivacyscanner.model.RiskLevel
+
+enum class TrackerCategory {
+    AD,
+    ANALYTICS,
+    PUSH,
+    SOCIAL,
+    PAYMENT,
+    MAP,
+    NETWORK,
+    COMMON_LIBRARY,
+    CUSTOMER_SERVICE,
+    CLOUD
+}
+
+data class TrackerRule(
+    val pattern: String,
+    val displayName: String,
+    val category: TrackerCategory,
+    val riskLevel: RiskLevel,
+    val score: Int
+)
+
+object TrackerRules {
+    val trackers = listOf(
+        TrackerRule("com.google.firebase", "Firebase（Google分析/推送）", TrackerCategory.ANALYTICS, RiskLevel.HIGH, 20),
+        TrackerRule("com.google.android.gms.ads", "Google AdMob广告", TrackerCategory.AD, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.google.android.gms.measurement", "Google Analytics", TrackerCategory.ANALYTICS, RiskLevel.HIGH, 20),
+        TrackerRule("com.google.android.gms.tagmanager", "Google Tag Manager", TrackerCategory.ANALYTICS, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.google.firebase.crashlytics", "Firebase Crashlytics（崩溃收集）", TrackerCategory.ANALYTICS, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.google.firebase.perf", "Firebase Performance（性能监控）", TrackerCategory.ANALYTICS, RiskLevel.LOW, 3),
+        TrackerRule("com.facebook.ads", "Facebook Audience Network广告", TrackerCategory.AD, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.unity3d.ads", "Unity Ads广告", TrackerCategory.AD, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.applovin", "AppLovin广告", TrackerCategory.AD, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.ironsource", "ironSource广告", TrackerCategory.AD, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.vungle", "Vungle广告", TrackerCategory.AD, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.mopub", "MoPub广告", TrackerCategory.AD, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.chartboost", "Chartboost广告", TrackerCategory.AD, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.tapjoy", "Tapjoy广告", TrackerCategory.AD, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.inmobi", "InMobi广告", TrackerCategory.AD, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.mintegral", "Mintegral广告", TrackerCategory.AD, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.bytedance.pangle", "穿山甲/Pangle广告（字节）", TrackerCategory.AD, RiskLevel.HIGH, 20),
+        TrackerRule("com.qq.e", "腾讯优量汇广告", TrackerCategory.AD, RiskLevel.HIGH, 20),
+        TrackerRule("com.kwad", "快手广告", TrackerCategory.AD, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.umeng", "友盟统计（阿里）", TrackerCategory.ANALYTICS, RiskLevel.HIGH, 20),
+        TrackerRule("com.baidu.mobstat", "百度统计", TrackerCategory.ANALYTICS, RiskLevel.HIGH, 20),
+        TrackerRule("com.tencent.bugly", "腾讯Bugly", TrackerCategory.ANALYTICS, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.appsflyer", "AppsFlyer归因分析", TrackerCategory.ANALYTICS, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.adjust", "Adjust归因分析", TrackerCategory.ANALYTICS, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.branch", "Branch深度链接", TrackerCategory.ANALYTICS, RiskLevel.LOW, 3),
+        TrackerRule("com.amplitude", "Amplitude分析", TrackerCategory.ANALYTICS, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.mixpanel", "Mixpanel分析", TrackerCategory.ANALYTICS, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.flurry", "Flurry分析（Yahoo）", TrackerCategory.ANALYTICS, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.localytics", "Localytics分析", TrackerCategory.ANALYTICS, RiskLevel.LOW, 3),
+        TrackerRule("com.facebook", "Facebook SDK", TrackerCategory.SOCIAL, RiskLevel.HIGH, 20),
+        TrackerRule("com.twitter", "Twitter SDK", TrackerCategory.SOCIAL, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.tencent.mm", "微信SDK", TrackerCategory.SOCIAL, RiskLevel.LOW, 3),
+        TrackerRule("com.sina.weibo", "微博SDK", TrackerCategory.SOCIAL, RiskLevel.LOW, 3),
+        TrackerRule("com.igexin", "个推推送", TrackerCategory.PUSH, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.xiaomi.mipush", "小米推送", TrackerCategory.PUSH, RiskLevel.LOW, 3),
+        TrackerRule("com.huawei.hms.push", "华为推送", TrackerCategory.PUSH, RiskLevel.LOW, 3),
+        TrackerRule("com.vivo.push", "vivo推送", TrackerCategory.PUSH, RiskLevel.LOW, 3),
+        TrackerRule("com.oppo.push", "OPPO推送", TrackerCategory.PUSH, RiskLevel.LOW, 3),
+        TrackerRule("com.heytap.msp", "OPPO推送", TrackerCategory.PUSH, RiskLevel.LOW, 3),
+        TrackerRule("com.meizu.cloud.pushsdk", "魅族推送", TrackerCategory.PUSH, RiskLevel.LOW, 3),
+        TrackerRule("com.jpush", "极光推送", TrackerCategory.PUSH, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.getui", "个推", TrackerCategory.PUSH, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.alipay", "支付宝SDK", TrackerCategory.PAYMENT, RiskLevel.LOW, 3),
+        TrackerRule("com.tencent.mm.opensdk", "微信支付SDK", TrackerCategory.PAYMENT, RiskLevel.LOW, 3),
+        TrackerRule("com.unionpay", "银联支付SDK", TrackerCategory.PAYMENT, RiskLevel.LOW, 3),
+        TrackerRule("com.paypal", "PayPal SDK", TrackerCategory.PAYMENT, RiskLevel.LOW, 3),
+        TrackerRule("com.stripe", "Stripe支付", TrackerCategory.PAYMENT, RiskLevel.LOW, 3),
+        TrackerRule("com.amap", "高德地图SDK", TrackerCategory.MAP, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.baidu.map", "百度地图SDK", TrackerCategory.MAP, RiskLevel.MEDIUM, 10),
+        TrackerRule("com.google.android.gms.maps", "Google Maps SDK", TrackerCategory.MAP, RiskLevel.MEDIUM, 10),
+        TrackerRule("im.crisp", "Crisp在线客服", TrackerCategory.CUSTOMER_SERVICE, RiskLevel.LOW, 3),
+        TrackerRule("com.tencent.qcloud", "腾讯云通信", TrackerCategory.CLOUD, RiskLevel.LOW, 3),
+        TrackerRule("com.squareup.okhttp", "OkHttp网络库", TrackerCategory.NETWORK, RiskLevel.NONE, 0),
+        TrackerRule("com.squareup.retrofit", "Retrofit网络库", TrackerCategory.NETWORK, RiskLevel.NONE, 0),
+        TrackerRule("com.squareup.picasso", "Picasso图片加载", TrackerCategory.COMMON_LIBRARY, RiskLevel.NONE, 0),
+        TrackerRule("com.bumptech.glide", "Glide图片加载", TrackerCategory.COMMON_LIBRARY, RiskLevel.NONE, 0),
+        TrackerRule("com.facebook.fresco", "Fresco图片加载", TrackerCategory.COMMON_LIBRARY, RiskLevel.NONE, 0),
+        TrackerRule("com.google.gson", "Gson JSON库", TrackerCategory.COMMON_LIBRARY, RiskLevel.NONE, 0),
+        TrackerRule("com.fasterxml", "Jackson JSON库", TrackerCategory.COMMON_LIBRARY, RiskLevel.NONE, 0),
+        TrackerRule("com.alibaba.fastjson", "FastJSON库（阿里）", TrackerCategory.COMMON_LIBRARY, RiskLevel.NONE, 0),
+        TrackerRule("org.apache", "Apache通用库", TrackerCategory.COMMON_LIBRARY, RiskLevel.NONE, 0),
+        TrackerRule("kotlin", "Kotlin标准库", TrackerCategory.COMMON_LIBRARY, RiskLevel.NONE, 0),
+        TrackerRule("androidx", "AndroidX官方库", TrackerCategory.COMMON_LIBRARY, RiskLevel.NONE, 0),
+        TrackerRule("com.google.android.material", "Material Design库", TrackerCategory.COMMON_LIBRARY, RiskLevel.NONE, 0)
+    )
+}

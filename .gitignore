@@ -1,0 +1,56 @@
+# ===== Android / Gradle 构建产物 =====
+android/.gradle/
+android/build/
+android/app/build/
+android/local.properties
+android/.idea/
+android/.cxx/
+android/.externalNativeBuild/
+
+# ===== 二进制包体（不入库）=====
+*.apk
+*.aab
+*.ap_
+*.dex
+*.jks
+*.keystore
+
+# ===== Python =====
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+env/
+
+# ===== 压缩包与体积大的二进制（不入库）=====
+*.zip
+*.7z
+*.rar
+*.tar
+*.gz
+*.bin
+
+# ===== 本地环境与临时目录 =====
+your_local_path/
+._____temp/
+.tmp/
+*.tmp
+*.log
+build_log*.txt
+build_errors*.txt
+
+# ===== IDE / OS =====
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# ===== 本地配置（可能含绝对路径或个人密钥）=====
+*.local
+local.properties
+
+# ===== 与本项目无关的临时脚本 =====
+test.py
